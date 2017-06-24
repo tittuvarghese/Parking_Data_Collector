@@ -1,7 +1,14 @@
+# scrapped from cybo.com
+#Developed By-Nimiya Joseph
+# Date - 24-06-2017
+# First, we need to import all the libraries that we are going to use.
 import urllib2
 from bs4 import BeautifulSoup
+# specify the url
 c="https://area-codes.cybo.com/india/484_ernakulam/parking-lots-and-garages/?"
+# query the website and return the html to the variable ‘page’
 page=urllib2.urlopen(c)
+# parse the html using beautiful soap and store in variable `soup`
 soup=BeautifulSoup(page,'html.parser')
 name=[]
 for n in soup.find_all(attrs={"class":"e-bname ellipsis"}):
@@ -13,6 +20,7 @@ for r in soup.find_all('span',attrs={"itemprop":"ratingValue"}):
     rating.append(r.text)
 
 print rating
+#To remove u'\xa0'
 rating=map(lambda each:each.replace(u'\xa0',u''),rating)
 print rating
 phone_no=[]
@@ -47,6 +55,7 @@ for r in soup.find_all('span',attrs={"itemprop":"ratingValue"}):
     rating.append(r.text)
 
 print rating
+#To remove u'\xa0'
 rating=map(lambda each:each.replace(u'\xa0',u''),rating)
 print rating
 for p in soup.find_all('span',attrs={"itemprop":"telephone"}):
@@ -65,6 +74,7 @@ for d in soup.find_all('span',attrs={"class":"e-cat ellipsis"}):
     des.append(d.text)
 
 print des
+#To remove u'\xa0'
 des=map(lambda each:each.replace(u'\xa0',u''),des)
 
 par=[]
